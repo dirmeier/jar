@@ -1,4 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^codecov\.yml$
+^.codecov\.yml$
 ^\.covrignore$
+^README\.Rmd$
+^README\.md$
+LICENSE
+.codecov.yml
+.lintr
+.github

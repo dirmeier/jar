@@ -1,12 +1,13 @@
 Package: jar
 Type: Package
-Title: Reverse-mode autodiff
+Title: Reverse-mode autodiff for R
 Version: 0.1.0
-uthors@R: person("Simon", "Dirmeier",
+Authors@R: person("Simon", "Dirmeier",
                   email = "simon.dirmeier@web.de",
                   role = c("aut", "cre"))
 Maintainer: Simon Dirmeier <simon.dirmeier@web.de>
-Description: Implementation of reverse-mode autodiff primivites to take gradients of arbitrary differentiably functions.
+Description: Implementation of reverse-mode autodiff primivites to take 
+  gradients of arbitrary differentiabl functions.
 URL: https://github.com/jar/datastructures
 BugReports: https://github.com/dirmeier/jar/issues
 License: GPL-3
@@ -16,9 +17,11 @@ Depends:
 Suggests:
     testthat,
     styler,
-    lintr,
-    covr
+    covr,
+    lintr
 Imports: 
     purrr,
-    R6
+    R6,
+    datastructures,
+    methods
 RoxygenNote: 7.1.1

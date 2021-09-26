@@ -19,14 +19,36 @@
 
 
 
-#' jar
+#' @title Define custom adjoint methods
 #'
-#' Implementation of reverse-mode autodiff primivites to take gradients of
-#' arbitrary differentiable functions
+#' @description Define methods to take analytic gradients for a custom function
 #'
-#' @author Simon Dirmeier
-#' @name jar-package
+#' @docType methods
+#' @rdname defadj-methods
 #'
-#' @docType package
-#' @keywords package
-adjs <- list()
+#' @param f a custom function
+#' @param ... list of functions that define how gradients are computed w.r.t
+#'  the number of an argument
+#
+setGeneric(
+  "defadj",
+  function(f, ...) {
+    standardGeneric("defadj")
+  },
+  package = "jar"
+)
+
+
+#' @rdname defadj-methods
+setMethod(
+  "defadj",
+  signature = signature(f = "ANY"),
+  function(f, ...) {
+    ajs <- list(...)
+    h <- list()
+    for (i in seq(ajs)) {
+      h[[i]] <- ajs[[i]]
+    }
+    adjs[[f]] <<- h
+  }
+)
