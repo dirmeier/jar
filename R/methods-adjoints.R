@@ -35,3 +35,19 @@ f2 <- function(x, y) {
   log(ps * x ^ y)
 }
 defadj("^", f1, f2)
+
+f1 <- function(x) {
+  1 / x
+}
+defadj("log", f1)
+
+f1 <- function(x) {
+  0.5 * x ^(-0.5)
+}
+defadj("sqrt", f1)
+
+
+f1 <- function(x) {
+  exp(x) * sign(x)
+}
+defadj("exp", f1)

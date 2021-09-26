@@ -1,9 +1,9 @@
-library(R6)
-
 .idx.factory <- local({
   static <- 0
   function() { static <<- static + 1; static }
 })
+
+
 
 Node <- R6Class("node", list(
   idx = NULL,
@@ -16,7 +16,7 @@ Node <- R6Class("node", list(
   depth = 0,
   is_leaf = FALSE,
   args = NULL,
-  initialize = function(op, node.name, is_leaf=FALSE, value=NULL, adjoint=0) {
+  initialize = function(op, node.name, is_leaf=FALSE, value=0, adjoint=0) {
     self$op <- op
     self$node_name <- node.name
     self$is_leaf <- is_leaf
@@ -25,6 +25,14 @@ Node <- R6Class("node", list(
     self$val <- value
     self$adj <- adjoint
     self$idx <- .idx.factory()
+  },
+  execute = function(vals) {
+    x <- if (length(vals) == 1) {
+      .Primitive(self$op)(vals)
+    } else {
+      Reduce(self$op, vals)
+    }
+    x
   },
   add_parent = function(parent) {
     self$parents <- c(self$parents, parent)

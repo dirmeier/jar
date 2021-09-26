@@ -1,25 +1,26 @@
-
 # jar
 
-<!-- badges: start -->
-<!-- badges: end -->
+[![Project Status](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
+[![ci](https://github.com/dirmeier/jar/workflows/ci/badge.svg)](https://github.com/dirmeier/jar/actions?query=workflow%3Aci)
 
-The goal of jar is to ...
+Autograd for R
+
+## Introduction
+
+This package implements a proof-of-concept of reverse-mode autodiff for R functions. The package is motivated and influenced by [`jax`](https://github.com/google/jax) without being very mature or computationally performant.
+
+```R
+  
+```
 
 ## Installation
 
-You can install the released version of jar from [CRAN](https://CRAN.R-project.org) with:
+Get the package using:
 
-``` r
-install.packages("jar")
+```R
+  devtools::install_github("dirmeier/jar")
 ```
 
-## Example
+## Author
 
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(jar)
-## basic example code
-```
-
+* Simon Dirmeier <a href="mailto:simon.dirmeier @ web.de">simon.dirmeier @ web.de</a>
