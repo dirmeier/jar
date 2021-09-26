@@ -6,8 +6,7 @@ output: github_document
 
 <!-- badges: start -->
 [![Project Status](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
-[![ci](https://github.com/dirmeier/jar/workflows/ci/badge.svg)](https://github.com/dirmeier/jar/actions?query=workflow%3Aci)
-[![CRAN](http://www.r-pkg.org/badges/version/ggpixel?color=white)](https://cran.r-project.org/package=ggpixel) 
+[![R build status](https://github.com/dirmeier/jar/workflows/R-CMD-check/badge.svg)](https://github.com/dirmeier/jar/actions)
 <!-- badges: end -->
 
 > Autograd for R
