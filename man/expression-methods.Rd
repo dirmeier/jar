@@ -20,9 +20,8 @@ returns a list with the root node, variable nodes and leaf nodes
 Construct an expression graph from a function
 }
 \examples{
- f <- function(x, y) {
-   x + y
- }
- expression.graph(f)
-
+f <- function(x, y) {
+  x + y
+}
+expression.graph(f)
 }

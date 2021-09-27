@@ -7,7 +7,7 @@ Authors@R: person("Simon", "Dirmeier",
                   role = c("aut", "cre"))
 Maintainer: Simon Dirmeier <simon.dirmeier@web.de>
 Description: Implementation of reverse-mode autodiff primivites to take 
-  gradients of arbitrary differentiabl functions.
+  gradients of arbitrary differentiable functions
 URL: https://github.com/jar/datastructures
 BugReports: https://github.com/dirmeier/jar/issues
 License: GPL-3

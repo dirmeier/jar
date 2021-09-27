@@ -7,9 +7,11 @@
 Status](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
 [![R build
 status](https://github.com/dirmeier/jar/workflows/R-CMD-check/badge.svg)](https://github.com/dirmeier/jar/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/dirmeier/jar/branch/master/graph/badge.svg)](https://codecov.io/gh/dirmeier/jar?branch=master)
 <!-- badges: end -->
 
-> Autograd for R
+> Reverse-mode autodiff for R
 
 ## Introduction
 
@@ -21,22 +23,6 @@ computationally performant.
 ``` r
 library(jar)
 
-tanh <- function(x, y) {
-  (1.0 - exp(-x)) / (1.0 + exp(-y))
-}
-
-grad(tanh, 1L)(1.0, 2.0)
-```
-
-    ## [1] 0.3240271
-
-``` r
-grad(tanh, 2L)(1.0, 2.0)
-```
-
-    ## [1] -0.0663686
-
-``` r
 logpdf <- function(y, mu, sigma) {
   -0.5 * ((y - mu) / sigma) ^ 2 - log(sigma) - 0.5 * log(2*pi)
 }
@@ -56,7 +42,7 @@ grad(logpdf, 2L)(1.0, 0.0, 1.0)
 grad(logpdf, 3L)(1.0, 0.0, 1.0)
 ```
 
-    ## [1] -3
+    ## [1] 0
 
 ## Installation
 

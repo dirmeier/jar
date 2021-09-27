@@ -31,11 +31,10 @@
 #' @return returns a list with the root node, variable nodes and leaf nodes
 #'
 #' @examples
-#'  f <- function(x, y) {
-#'    x + y
-#'  }
-#'  expression.graph(f)
-#'
+#' f <- function(x, y) {
+#'   x + y
+#' }
+#' expression.graph(f)
 setGeneric(
   "expression.graph",
   function(f) {
@@ -49,8 +48,7 @@ setGeneric(
 setMethod(
   "expression.graph",
   signature = signature(f = "function"),
-  function(f)
-  {
+  function(f) {
     args <- as.list(f)
     variables <- .get.vars(args)
 
@@ -58,7 +56,6 @@ setMethod(
     raw <- as.list(raw[[length(raw)]])[[2]]
     ast <- .ast(raw)
     ast <- if (ast[[1]] == "(") ast[[2:length(ast)]] else ast
-
 
     root <- as.character(ast[[1]])
     root <- Node$new(root, root, adjoint = 1.0)
@@ -72,18 +69,19 @@ setMethod(
 
 #' @noRd
 #' @importFrom datastructures stack insert pop size
-.get.leaves <- function(node)
-{
+.get.leaves <- function(node) {
   leaves <- list()
-  st    <- datastructures::stack()
+  st <- datastructures::stack()
   datastructures::insert(st, node)
 
   while (datastructures::size(st) > 0) {
     n <- datastructures::pop(st)
-    for (c in n$children)
+    for (c in n$children) {
       datastructures::insert(st, c)
-    if (length(n$children) == 0)
+    }
+    if (length(n$children) == 0) {
       leaves <- c(leaves, n)
+    }
   }
 
   leaves
@@ -91,8 +89,7 @@ setMethod(
 
 
 #' @noRd
-.get.vars <- function(args)
-{
+.get.vars <- function(args) {
   variables <- names(args)
   variables <- variables[variables != ""]
 
@@ -103,7 +100,7 @@ setMethod(
   hash <- list()
   for (i in seq(variables)) {
     v <- variables[[i]]
-    hash[[v$node_name]] <- v
+    hash[[v$node.name]] <- v
   }
 
   hash
@@ -111,8 +108,7 @@ setMethod(
 
 
 #' @noRd
-.recurse <- function(parent, ast, variables)
-{
+.recurse <- function(parent, ast, variables) {
   for (i in seq(ast)) {
     n <- ast[[i]]
     if (.is.parens(n)) {
@@ -139,7 +135,9 @@ setMethod(
       .recurse(n, ast[(i + 1):length(ast)], variables)
       return(1)
     }
-    else stop("could not parse tree")
+    else {
+      stop("could not parse tree")
+    }
   }
 }
 
@@ -150,8 +148,7 @@ setMethod(
 
 
 #' @noRd
-.as.double <- function(s)
-{
+.as.double <- function(s) {
   if (is.numeric(s)) {
     return(s)
   }
@@ -164,39 +161,34 @@ setMethod(
 
 
 #' @noRd
-.is.parens <- function(s)
-{
+.is.parens <- function(s) {
   s <- as.character(s)
   length(s) == 1 && as.character(s) == "("
 }
 
 
 #' @noRd
-.is.binary.op <- function(s)
-{
+.is.binary.op <- function(s) {
   s <- as.character(s)
   length(s) == 1 && s %in% c("+", "-", "*", "/", "^", "**")
 }
 
 
 #' @noRd
-.is.unary.op <- function(s)
-{
+.is.unary.op <- function(s) {
   s <- as.character(s)
   length(s) == 1 && s %in% c("log", "exp")
 }
 
 
 #' @noRd
-.is.variable <- function(s)
-{
+.is.variable <- function(s) {
   .is.symbol(s) && !.is.binary.op(s) && !.is.unary.op(s)
 }
 
 
 #' @noRd
-.is.scalar <- function(s)
-{
+.is.scalar <- function(s) {
   is.numeric(s) || as.character(s) %in% c("pi")
 }
 

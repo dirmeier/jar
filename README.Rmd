@@ -7,9 +7,10 @@ output: github_document
 <!-- badges: start -->
 [![Project Status](http://www.repostatus.org/badges/latest/concept.svg)](http://www.repostatus.org/#concept)
 [![R build status](https://github.com/dirmeier/jar/workflows/R-CMD-check/badge.svg)](https://github.com/dirmeier/jar/actions)
+[![Codecov test coverage](https://codecov.io/gh/dirmeier/jar/branch/master/graph/badge.svg)](https://codecov.io/gh/dirmeier/jar?branch=master)
 <!-- badges: end -->
 
-> Autograd for R
+> Reverse-mode autodiff for R
 
 ## Introduction
 
@@ -17,14 +18,6 @@ This package implements a proof-of-concept of reverse-mode autodiff for R functi
 
 ```{r}
 library(jar)
-
-tanh <- function(x, y) {
-  (1.0 - exp(-x)) / (1.0 + exp(-y))
-}
-
-grad(tanh, 1L)(1.0, 2.0)
-grad(tanh, 2L)(1.0, 2.0)
-
 
 logpdf <- function(y, mu, sigma) {
   -0.5 * ((y - mu) / sigma) ^ 2 - log(sigma) - 0.5 * log(2*pi)

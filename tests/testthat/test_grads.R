@@ -7,7 +7,7 @@ tanh <- function(x, y) {
 
 
 logpdf <- function(y, mu, sigma) {
-  -0.5 * ((y - mu) / sigma) ^ 2 - log(sigma) - 0.5 * log(2 * pi)
+  -0.5 * ((y - mu) / sigma)^2 - log(sigma) - 0.5 * log(2 * pi)
 }
 
 
@@ -38,4 +38,3 @@ test_that("log dnorm produces correct gradients for sigma", {
   g <- grad(logpdf, 3L)(0.98, 0.1, 2.0)
   testthat::expect_equal(g, -0.4032, tolerance = 0.001)
 })
-

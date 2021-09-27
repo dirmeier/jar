@@ -28,8 +28,6 @@
 #'
 #' @examples
 #' Node$new("+", "+")
-#'
-#'
 Node <- R6::R6Class("node", list(
   idx = NULL,
   op = NULL,
@@ -37,13 +35,17 @@ Node <- R6::R6Class("node", list(
   adj = NULL,
   parents = NULL,
   children = NULL,
-  node_name = NULL,
+  node.name = NULL,
   depth = 0,
   is.leaf = FALSE,
   args = NULL,
-  initialize = function(op, node.name, is.leaf = FALSE, value = 0, adjoint = 0) {
+  initialize = function(op,
+                        node.name,
+                        is.leaf = FALSE,
+                        value = 0,
+                        adjoint = 0) {
     self$op <- op
-    self$node_name <- node.name
+    self$node.name <- node.name
     self$is.leaf <- is.leaf
     self$parents <- list()
     self$children <- list()
@@ -73,12 +75,13 @@ Node <- R6::R6Class("node", list(
       if (node$depth > 0) {
         pr <- paste0(
           paste0(rep(" ", 2 * (node$depth - 1)),
-                 collapse = ""),
+            collapse = ""
+          ),
           "-> ",
-          node$node_name
+          node$node.name
         )
       } else {
-        pr <- node$node_name
+        pr <- node$node.name
       }
       cat(pr, "\n")
       for (child in rev(node$children)) {
@@ -97,4 +100,3 @@ Node <- R6::R6Class("node", list(
     static
   }
 })
-

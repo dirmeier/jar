@@ -20,45 +20,47 @@
 
 #' @noRd
 .onLoad <- function(libname, pkgname) {
-  f1 <- function(x, y) 1
-  f2 <- function(x, y) 1
+  f1 <- function(g, ans, x, y) g
+  f2 <- function(g, ans, x, y) g
   defadj("+", f1, f2)
 
-  f1 <- function(x, y) 1
-  f2 <- function(x, y) -1
+  f1 <- function(g, ans, x, y) {
+    ifelse(missing(y), -g, g)
+  }
+  f2 <- function(g, ans, x, y) -g
   defadj("-", f1, f2)
 
-  f1 <- function(x, y) y
-  f2 <- function(x, y) x
+  f1 <- function(g, ans, x, y) g * y
+  f2 <- function(g, ans, x, y) g * x
   defadj("*", f1, f2)
 
-  f1 <- function(x, y) 1 / y
-  f2 <- function(x, y) x / y**2
+  f1 <- function(g, ans, x, y) g / y
+  f2 <- function(g, ans, x, y) -g * x * y^(-2)
   defadj("/", f1, f2)
 
-  f1 <- function(x, y) {
+  f1 <- function(g, ans, x, y) {
     ps <- ifelse(y != 0, y - 1, 1)
-    y * x^ps
+    g * y * x^ps
   }
-  f2 <- function(x, y) {
+  f2 <- function(g, ans, x, y) {
     ps <- ifelse(x == 0, 1, x)
-    log(ps * x^y)
+    g * log(ps) * x^y
   }
   defadj("^", f1, f2)
 
-  f1 <- function(x) {
-    1 / x
+  f1 <- function(g, ans, x) {
+    g / x
   }
   defadj("log", f1)
 
-  f1 <- function(x) {
-    0.5 * x^(-0.5)
+  f1 <- function(g, ans, x) {
+    g * 0.5 * x^(-0.5)
   }
   defadj("sqrt", f1)
 
 
-  f1 <- function(x) {
-    exp(x)
+  f1 <- function(g, ans, x) {
+    g * ans
   }
   defadj("exp", f1)
 }

@@ -24,9 +24,8 @@ Compute gradients of a function with respect to one of its
  arguments
 }
 \examples{
- f <- function(x, y) {
-   x + y
- }
- grad(f)(1.0, 1.0)
-
+f <- function(x, y) {
+  x + y
+}
+grad(f)(1.0, 1.0)
 }
